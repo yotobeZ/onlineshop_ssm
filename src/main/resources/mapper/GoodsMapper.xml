@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hfut.dao.GoodsMapper">
+    <select id="selectByDistrict" parameterType="int" resultType="com.hfut.pojo.Goods">
+        SELECT * FROM goods
+        <if test="goodsDistrict != 0">
+            WHERE goodsDistrict= #{goodsDistrict}</if>
+    </select>
+    <select id="selectById" parameterType="int" resultType="com.hfut.pojo.Goods">
+        SELECT * FROM goods WHERE id=#{id}
+    </select>
+    <select id="selectAll" resultType="com.hfut.pojo.Goods">
+        SELECT * FROM goods
+    </select>
+    <update id="fixGoodsById">
+        UPDATE goods SET
+        goodsName=#{goods.goodsName},
+        goodsPrice=#{goods.goodsPrice},
+        goodsCount=#{goods.goodsCount},
+        billStatus=#{goods.billStatus}
+        WHERE id=#{goods.id}
+    </update>
+
+</mapper>
